@@ -9,13 +9,15 @@ import React, { useState, useEffect } from 'react';
 import {View} from 'react-native'
 import Page1and2 from './pages/Page1and2'
 import Page3 from './pages/Page3'
+import LoginScreen from './pages/LoginScreen'
 import dArray from './data';
 
 const App: () => React$Node = () => {
   return (
     <View>
       {/* <Page1and2 /> */}
-      <Page3 />
+      {/* <Page3 /> */}
+      <LoginScreen />
     </View>
   );
 };
