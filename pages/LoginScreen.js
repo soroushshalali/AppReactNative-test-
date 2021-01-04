@@ -1,9 +1,16 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, StatusBar, ScrollView, TextInput, Pressable } from 'react-native';
+import { Formik } from "formik";
+ import * as yup from 'yup';
 
 
+ let schema = yup.object().shape({
+     email: yup.string().required().email('inco E-Mail'),
+     password:yup.string().min(8,'min 8')
+ });
 
 const LoginScreen = () => {
+
     return (
         <ScrollView>
             <StatusBar hidden />
@@ -15,34 +22,64 @@ const LoginScreen = () => {
             <View style={styles.secondStyle} >
                 <Text style={{ fontSize: 30, textAlign: 'center' }} >Welcome!</Text>
             </View>
-            <View style={styles.thirdStyle} >
-                <TextInput
-                    keyboardType='email-address'
-                    placeholder='EMAIL'
-                    textContentType='emailAddress'
-                    style={styles.inputBox}
-                />
-                <TextInput
-                    placeholder='Password'
-                    textContentType='password'
-                    secureTextEntry
-                    style={[styles.inputBox, { marginVertical: 15 }]}
-                />
-            </View>
+            <Formik
+                 validationSchema={schema}
+                initialValues={{ email: '', password: '' }}
+                onSubmit={(values, actions) => {
+                    setTimeout(() => {
+                        alert(JSON.stringify(values, null, 2))
+                        actions.setSubmitting(false);
+                    }, 500)
+                }}
+            >
+                {
+                    ({ values, errors, handleChange, handleBlur, handleSubmit }) => {
+                        return (
 
-            <View style={{ paddingHorizontal: '5%' }}>
-                <Pressable
-                    style={styles.press}
-                >
-                    <Text style={{ color: '#fff' , fontSize:20 }} >Login</Text>
-                </Pressable>
-            </View>
+                            <View>
+                                <View style={styles.thirdStyle} >
+                                    <TextInput
+                                        keyboardType='email-address'
+                                        placeholder='EMAIL'
+                                        textContentType='emailAddress'
+                                        style={styles.inputBox}
+                                        onBlur={handleBlur('email')}
+                                        onChangeText={handleChange('email')}
+                                        value={values.email}
+                                    />
+                                    <Text>{errors.email}</Text>
+                                    <TextInput
+                                        placeholder='Password'
+                                        textContentType='password'
+                                        secureTextEntry
+                                        style={[styles.inputBox, { marginVertical: 15 }]}
+                                        onBlur={handleBlur('password')}
+                                        onChangeText={handleChange('password')}
+                                        value={values.password}
+                                    />
+                                    <Text>{errors.password}</Text>
+                                </View>
+                                <View style={{ paddingHorizontal: '5%' }}>
+                                    <Pressable
+                                        style={styles.press}
+                                        onPress={handleSubmit}
+                                    >
+                                        <Text style={{ color: '#fff', fontSize: 20 }} >Log- in</Text>
+                                    </Pressable>
+                                </View>
+                            </View>
+
+                        )
+                    }
+                }
+            </Formik>
+
         </ScrollView >
     );
 }
 const styles = StyleSheet.create({
     firstStyle: {
-        height:200
+        height: 200
     },
     imageLogin: {
         width: '100%',
@@ -62,7 +99,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#388e3c',
         alignItems: 'center',
         paddingVertical: 10,
-        borderRadius: 10
+        borderRadius: 10,
+        marginBottom: 20
     }
 });
 
