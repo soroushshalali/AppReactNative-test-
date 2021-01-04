@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Pressable, TextComponent } from 'react-native';
+import { View, Text, Pressable, TextComponent, StyleSheet } from 'react-native';
 import { useEffect, useState } from 'react/cjs/react.development';
 
 
@@ -14,13 +14,13 @@ const LifeCycle = () => {
 
     useEffect(() => {
         console.log('result btn2' + btn2);
-    },[btn2]);
+    }, [btn2]);
 
     return (
         <View>
 
             <Pressable
-                style={{ borderWidth: 2, marginVertical: 10 }}
+                style={styles.btn}
                 onPress={() => {
                     setBtn1('YES')
                 }}
@@ -29,7 +29,7 @@ const LifeCycle = () => {
             </Pressable>
 
             <Pressable
-                style={{ borderWidth: 2, marginVertical: 10 }}
+                style={styles.btn}
                 onPress={() => {
                     setBtn2('NO')
                 }}
@@ -43,3 +43,13 @@ const LifeCycle = () => {
 }
 
 export default LifeCycle;
+
+const styles = StyleSheet.create({
+    btn: {
+        borderWidth: 2,
+        marginVertical: 10,
+        backgroundColor: '#bbb',
+        width: 100
+    }
+
+});
