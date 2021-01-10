@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react/cjs/react.development';
 
 
 
-const LifeCycle = () => {
+const LifeCycle = (props) => {
     const [btn1, setBtn1] = useState('');
     const [btn2, setBtn2] = useState('');
 
@@ -18,7 +18,7 @@ const LifeCycle = () => {
 
     return (
         <View>
-
+            <Text>Life-Cycle</Text>
             <Pressable
                 style={styles.btn}
                 onPress={() => {
@@ -36,7 +36,7 @@ const LifeCycle = () => {
             >
                 <Text>NO</Text>
             </Pressable>
-
+            <Text>ID:</Text>
 
         </View>
     );

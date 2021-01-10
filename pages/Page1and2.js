@@ -58,11 +58,11 @@ const Page1and2 = () => {
       <Text style={{ fontFamily: 'Audiowide-Regular', fontSize: 20 }} >Test soroush </Text>
 
 
-    
 
-      <Pressable 
-        onPress={()=>setModalVisible(!modalVisible)}  
-        style={styles.showModal}    
+
+      <Pressable
+        onPress={() => setModalVisible(!modalVisible)}
+        style={styles.showModal}
       >
         <Text>Show Modal</Text>
       </Pressable>
@@ -79,8 +79,8 @@ const Page1and2 = () => {
             <Text>Hello World!</Text>
 
             <TouchableHighlight
-            activeOpacity={1}
-            style={styles.hideModal}
+              activeOpacity={1}
+              style={styles.hideModal}
               onPress={() => {
                 setModalVisible(!modalVisible);
               }}
@@ -142,8 +142,10 @@ const Page1and2 = () => {
       <Text>{counterClick}</Text>
 
 
-      <View>
-        <Text>VirtualizedList</Text>
+      <SafeAreaView>
+        <View>
+          <Text>VirtualizedList</Text>
+        </View>
         <VirtualizedList
           horizontal
           data={dArray}
@@ -161,7 +163,10 @@ const Page1and2 = () => {
           }}
           getItemCount={(data) => { return data.length }}
         />
-      </View>
+        <View>
+          <Text>VirtualizedList</Text>
+        </View>
+      </SafeAreaView>
 
       <FlatList
         horizontal
@@ -231,20 +236,20 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     margin: 5,
   },
-  showModal:{
+  showModal: {
     backgroundColor: "#F194FF",
     borderRadius: 20,
     padding: 10,
     elevation: 10,
-    width:150,
-    alignItems:'center'
+    width: 150,
+    alignItems: 'center'
   },
-  hideModal:{
-    backgroundColor:'#F191AA',
-    borderRadius:10,
-    padding:10,
-    width:150,
-    alignItems:'center'
+  hideModal: {
+    backgroundColor: '#F191AA',
+    borderRadius: 10,
+    padding: 10,
+    width: 150,
+    alignItems: 'center'
   }
 });
 

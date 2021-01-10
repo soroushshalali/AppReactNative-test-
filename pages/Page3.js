@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Image, View, Text, StyleSheet, Alert, Pressable, ScrollView, RefreshControl, StatusBar } from 'react-native';
+import { Image, View, Text, StyleSheet, Alert, Pressable, ScrollView, RefreshControl, StatusBar, Button } from 'react-native';
 
 import {
     Header,
@@ -8,10 +8,10 @@ import {
     DebugInstructions,
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
+import { NavigationContainer, StackActions } from '@react-navigation/native';
 import dArray from '../data';
 
-const Page3 = () => {
+const Page3 = (props) => {
     const showAlert = () => {
         Alert.alert(
             'title For Alert',
@@ -53,6 +53,8 @@ const Page3 = () => {
             >
                 <Text>show Alert</Text>
             </Pressable>
+            {/* stackNavigator */}
+            <Button title='go to Home' onPress={()=>props.navigation.dispatch(StackActions.popToTop())} />
         </View>
     );
 };
