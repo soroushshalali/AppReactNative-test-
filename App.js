@@ -16,12 +16,13 @@ import LifeCycle from './pages/LifeCycle';
 import Home from './pages/Home';
 import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { DrawerContent } from './pages/DrawerContent';
 
 
 
 const Drawer = createDrawerNavigator();
 
-const App: () => React$Node = () => {
+const App = () => {
   return (
     <NavigationContainer>
       {/* <Page1and2 /> */}
@@ -29,7 +30,7 @@ const App: () => React$Node = () => {
       {/* <LoginScreen /> */}
       {/* <LifeCycle /> */}
 
-      <Drawer.Navigator>
+      <Drawer.Navigator initialRouteName='Home' drawerContent={props=><DrawerContent  {...props} />} >
         {/* <Drawer.Screen name="Home">
           {props => <Home {...props} id='id' />}
         </Drawer.Screen> */}
